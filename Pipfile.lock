@@ -1,0 +1,61 @@
+{
+    "_meta": {
+        "hash": {
+            "sha256": "e38543af006a803ee9c57f94868ad12afc69bd561e38c5081f540b7062e2aa76"
+        },
+        "pipfile-spec": 6,
+        "requires": {
+            "python_version": "3.11"
+        },
+        "sources": [
+            {
+                "name": "pypi",
+                "url": "https://pypi.org/simple",
+                "verify_ssl": true
+            }
+        ]
+    },
+    "default": {
+        "et-xmlfile": {
+            "hashes": [
+                "sha256:8eb9e2bc2f8c97e37a2dc85a09ecdcdec9d8a396530a6d5a33b30b9a92da0c5c",
+                "sha256:a2ba85d1d6a74ef63837eed693bcb89c3f752169b0e3e7ae5b16ca5e1b3deada"
+            ],
+            "markers": "python_version >= '3.6'",
+            "version": "==1.1.0"
+        },
+        "nodeenv": {
+            "hashes": [
+                "sha256:27083a7b96a25f2f5e1d8cb4b6317ee8aeda3bdd121394e5ac54e498028a042e",
+                "sha256:e0e7f7dfb85fc5394c6fe1e8fa98131a2473e04311a45afb6508f7cf1836fa2b"
+            ],
+            "markers": "python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3, 3.4, 3.5, 3.6'",
+            "version": "==1.7.0"
+        },
+        "openpyxl": {
+            "hashes": [
+                "sha256:0ab6d25d01799f97a9464630abacbb34aafecdcaa0ef3cba6d6b3499867d0355",
+                "sha256:e47805627aebcf860edb4edf7987b1309c1b3632f3750538ed962bbcc3bd7449"
+            ],
+            "index": "pypi",
+            "version": "==3.0.10"
+        },
+        "pyright": {
+            "hashes": [
+                "sha256:0a98fd55ba8b9c16145c16b79c524fdb1daf55ed6dc094c8a7a2dd540af00b67",
+                "sha256:a504d67d559dc90bf7209df090d79392fee47f308b36066a467b98d2a4aa471d"
+            ],
+            "index": "pypi",
+            "version": "==1.1.265"
+        },
+        "setuptools": {
+            "hashes": [
+                "sha256:7c7854ee1429a240090297628dc9f75b35318d193537968e2dc14010ee2f5bca",
+                "sha256:dc2662692f47d99cb8ae15a784529adeed535bcd7c277fee0beccf961522baf6"
+            ],
+            "markers": "python_version >= '3.7'",
+            "version": "==63.4.1"
+        }
+    },
+    "develop": {}
+}
