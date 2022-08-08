@@ -3,7 +3,7 @@ Simple python script which takes your CSV transactions and writes them into Exce
 
 
 ### Requirements
-- Python3 (version > 3.6)
+- Python3 (version greater than 3.6)
 ```bash
 python --version
 # OR
