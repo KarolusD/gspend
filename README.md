@@ -36,3 +36,10 @@ amount = float(
 ```
 
 
+### How to run it?
+```bash
+python3 gspend.py
+# OR create an alias in you bash/zsh config
+alias gspend "python3 /path/to/gspend.py"
+```
+
