@@ -30,47 +30,6 @@ class Excel(TypedDict):
     sheets: dict[str, Any]
 
 
-def generate_excel():
-    try:
-        path_to_CSV = input("Provide CSV file path:\n")
-
-        print("\nReading CSV transactions...")
-        all_transactions = read_csv_transactions(path_to_CSV)
-
-        print("Creating basic excel structure...")
-        excel = create_excel()
-
-        print("Writing transactions into excel...")
-        write_transactions_into_excel(excel["sheets"]["spendings"], all_transactions)
-
-        print("Creating transactions line chart...")
-        create_line_chart_for_transactions_in_time(
-            excel["sheets"]["spendings"], len(all_transactions)
-        )
-
-        print("Grouping expenses by category...")
-        expenses_by_category = group_transactions_by_categories(all_transactions)
-
-        print("Writing expenses by category into excel...")
-        write_expenses_by_category_into_excel(
-            excel["sheets"]["expenses"], expenses_by_category
-        )
-
-        print("Creating expenses pie chart...\n")
-        create_pie_chart_for_expenses_by_category(
-            excel["sheets"]["expenses"], len(expenses_by_category)
-        )
-
-        path_to_excel = input("Where to save excel? (./gspend.xlsx)\n") or "./gspend.xlsx"
-
-        excel["workbook"].save(path_to_excel)
-        print("\nExcel file was successfully generated 🚀")
-    except Exception as exception:
-        print(exception)
-        print("Something went wrong while generating excel file 😢")
-
-
-generate_excel()
 
 
 def create_excel() -> Excel:
@@ -244,3 +203,46 @@ def create_line_chart_for_transactions_in_time(sheet: Any, max_row: int):
     chart.legend = None
 
     sheet.add_chart(chart, "E1")
+
+
+def generate_excel():
+    try:
+        path_to_CSV = input("Provide CSV file path:\n")
+
+        print("\nReading CSV transactions...")
+        all_transactions = read_csv_transactions(path_to_CSV)
+
+        print("Creating basic excel structure...")
+        excel = create_excel()
+
+        print("Writing transactions into excel...")
+        write_transactions_into_excel(excel["sheets"]["spendings"], all_transactions)
+
+        print("Creating transactions line chart...")
+        create_line_chart_for_transactions_in_time(
+            excel["sheets"]["spendings"], len(all_transactions)
+        )
+
+        print("Grouping expenses by category...")
+        expenses_by_category = group_transactions_by_categories(all_transactions)
+
+        print("Writing expenses by category into excel...")
+        write_expenses_by_category_into_excel(
+            excel["sheets"]["expenses"], expenses_by_category
+        )
+
+        print("Creating expenses pie chart...\n")
+        create_pie_chart_for_expenses_by_category(
+            excel["sheets"]["expenses"], len(expenses_by_category)
+        )
+
+        path_to_excel = input("Where to save excel? (./gspend.xlsx)\n") or "./gspend.xlsx"
+
+        excel["workbook"].save(path_to_excel)
+        print("\nExcel file was successfully generated 🚀")
+    except Exception as exception:
+        print(exception)
+        print("Something went wrong while generating excel file 😢")
+
+
+generate_excel()
