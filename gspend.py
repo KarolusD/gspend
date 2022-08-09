@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 from openpyxl import Workbook
 from openpyxl.styles import Font
 from openpyxl.chart.axis import DateAxis
@@ -12,12 +14,14 @@ from openpyxl.drawing.text import (
 )
 
 # built-in libraries
+import sys
 import csv
 from datetime import datetime
 from typing import Any, TypedDict
 
 WHERE_TRANSACTIONS_START = "#Data operacji"
 WHERE_TRANSACTIONS_END = "___End of file___"
+
 
 class Transaction(TypedDict):
     date: datetime
@@ -28,8 +32,6 @@ class Transaction(TypedDict):
 class Excel(TypedDict):
     workbook: Workbook
     sheets: dict[str, Any]
-
-
 
 
 def create_excel() -> Excel:
@@ -62,11 +64,10 @@ def read_csv_transactions(file_path: str) -> list[Transaction]:
 
         for line in csv_reader:
             if line and line[0]:
-                if  line[0] == WHERE_TRANSACTIONS_END:
+                if line[0] == WHERE_TRANSACTIONS_END:
                     start = False
 
                 if start:
-
                     date = datetime.strptime(line[0], "%Y-%m-%d").strftime("%m/%d/%Y")
                     category = line[3]
                     amount = float(
@@ -80,12 +81,12 @@ def read_csv_transactions(file_path: str) -> list[Transaction]:
                 if line[0] == WHERE_TRANSACTIONS_START:
                     start = True
 
-
         return all_transactions
 
 
 def write_transactions_into_excel(sheet: Any, all_transactions: list[Transaction]):
     currency_format = "# ##0.00 [$zł-415]; [Red] -# ##0.00 [$zł-415]"
+
     for idx, transaction in enumerate(all_transactions):
         row = idx + 2  # rows start from 1 and first row is for header
         sheet.cell(row, column=1, value=transaction["date"])
@@ -207,7 +208,13 @@ def create_line_chart_for_transactions_in_time(sheet: Any, max_row: int):
 
 def generate_excel():
     try:
-        path_to_CSV = input("Provide CSV file path:\n")
+        if len(sys.argv) < 3:
+            raise Exception(
+                "You have to provide a path to CSV and where to save excel file as first & second argument accordingly"
+            )
+
+        path_to_CSV = sys.argv[1]
+        path_to_excel = sys.argv[2]
 
         print("\nReading CSV transactions...")
         all_transactions = read_csv_transactions(path_to_CSV)
@@ -235,8 +242,6 @@ def generate_excel():
         create_pie_chart_for_expenses_by_category(
             excel["sheets"]["expenses"], len(expenses_by_category)
         )
-
-        path_to_excel = input("Where to save excel? (./gspend.xlsx)\n") or "./gspend.xlsx"
 
         excel["workbook"].save(path_to_excel)
         print("\nExcel file was successfully generated 🚀")

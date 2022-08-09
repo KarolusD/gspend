@@ -20,7 +20,6 @@ brew install openpyxl
 # assuming you have pipenv installed use:
 pipenv shell
 pipenv install
-python3 gspend.py
 ```
 
 - Transactions history CSV file (implementation assumes it finds certain values: look closely to gspend.py)
@@ -38,8 +37,16 @@ amount = float(
 
 ### How to run it?
 ```bash
-python3 gspend.py
-# OR create an alias in you bash/zsh config
-alias gspend "python3 /path/to/gspend.py"
+# either use python
+python3 gspend.py path/to/transactions.csv path/where/to/save/excel.xlsx
+
+# OR run python from shell
+chmod +x gspend.py
+./gspend.py path/to/transactions.csv path/where/to/save/excel.xlsx
+
+
+# you can also create an alias in your bash/zsh/fish config
+alias gspend "python3 path/to/gspend.py $1 $2"
+gspend path/to/transactions.csv path/where/to/save/excel.xlsx
 ```
 
